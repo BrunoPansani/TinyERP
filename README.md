@@ -38,7 +38,7 @@ composer require Uilia/TinyERP
 
 ###### For details on how to use, see a sample folder in the component directory. In it you will have an example of use for each class. It works like this:
 
-Para mais detalhes sobre como usar, veja uma pasta de exemplo no diretório do componente. Nela terá um exemplo de uso para cada classe. Ele funciona assim:
+Para mais detalhes sobre como usar, veja uma pasta de exemplo no diretório do componente. Nela terá alguns exemplos de uso. Ele funciona assim:
 
 #### Produtos endpoint:
 
@@ -103,21 +103,23 @@ $tiny->clientes();
 
 ### Others
 
-Para que você entenda de vez, todo método que recebe um array você passará os parâmetros descritos na documentação conforme seu uso, os únicos parâmetros que você não precisa informar no array é o 'token' e o 'formato' que por padrão é json.
+Para que você entenda de vez, todo método que recebe um array você passará os parâmetros descritos na documentação conforme seu uso, os únicos parâmetros que você não precisa informar no array é o 'token' que já é informado na classe TinyERP e o 'formato' que por padrão é definido como json.
 
 ## Contributing
 
-Please see [CONTRIBUTING](https://github.com/robsonvleite/uploader/blob/master/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](https://github.com/Uilia/TinyERP/blob/master/CONTRIBUTING.md) for details.
 
 ## Support
 
-Se você descobrir algum problema relacionado à segurança, envie um e-mail para william@uilia.com.br em vez de usar o rastreador de problemas.
+Se você descobrir algum problema relacionado à segurança, envie um email para william@uilia.com.br em vez de usar o rastreador de problemas.
 
 Thank you
 
 ## Credits
 
 - [William Alvares](https://github.com/curruwilla) (Developer)
+- [UILIA E-commerce](https://github.com/Uilia) (Team)
+- [All Contributors](https://github.com/Uilia/TinyERP/contributors) (This Rock)
 
 ## License
 

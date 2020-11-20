@@ -13,13 +13,13 @@ $produtos = $tiny->produtos();
 
 // Obter Produto
 // Documentação: https://tiny.com.br/ajuda/api/api2-produtos-obter
-// ID = Número de identificação do produto no Tiny;
+// id = Número de identificação do produto no Tiny;
 $find = $produtos->findById("2123213");
 var_dump($find);
 
 // Incluir Produto
 // Documentação: https://tiny.com.br/ajuda/api/api2-produtos-incluir
-// ARRAY = Dados do produto conforme layout
+// array = Dados do produto conforme layout
 $array = array(
     "produtos" => array(
         [
