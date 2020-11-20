@@ -1,0 +1,27 @@
+{
+  "name": "uilia/tinyerp",
+  "description": "Integração básica para consumir API do Tiny ERP.",
+  "keywords": [
+    "UILIA",
+    "Tiny ERP"
+  ],
+  "homepage": "https://www.uilia.com.br",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "William Alvares",
+      "email": "william@uilia.com.br",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.4",
+    "ext-json": "*",
+    "ext-curl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Uilia\\Api\\": "src"
+    }
+  }
+}
