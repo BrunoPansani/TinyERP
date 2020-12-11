@@ -84,7 +84,7 @@ $array = array(
     )
 );
 
-$cadastro = $produtos->create($array);
+$cadastro = $produtos->create(array("produtos" => json_encode($array)));
 var_dump($cadastro); // Retorno é um object
 ```
 
