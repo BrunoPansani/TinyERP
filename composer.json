@@ -1,5 +1,5 @@
 {
-  "name": "uilia/tinyerp",
+  "name": "brunopansani/tinyerp",
   "description": "Integração básica para consumir API do Tiny ERP.",
   "keywords": [
     "UILIA",
@@ -11,6 +11,11 @@
     {
       "name": "William Alvares",
       "email": "william@uilia.com.br",
+      "role": "Developer"
+    },
+    {
+      "name": "Bruno Pansani",
+      "email": "bruno@pansani.dev",
       "role": "Developer"
     }
   ],
