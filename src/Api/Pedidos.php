@@ -34,6 +34,18 @@ class Pedidos extends Http
     }
 
     /**
+     * Atualizar do pedido
+     *
+     * @param array|null $params
+     *
+     * @return mixed
+     */
+    public function update(?array $params): ?object
+    {
+        return $this->setAction("pedido.alterar.php")->setParams(['dados_pedido' => json_encode($params)])->post()->getCallback();
+    }
+
+    /**
      * Incluir Pedido
      *
      * @param array|null $params Dados do pedido conforme layout
@@ -91,41 +103,58 @@ class Pedidos extends Http
         return $this->setAction("gerar.nota.fiscal.pedido.php")->setParams($params)->post()->getCallback();
     }
 
+    /**
+     * Adiciona um marcador ao pedido
+     * @param int $orderId ID do Pedido
+     * @param int|null $markerId ID do marcador
+     * @param string $description Descrição do marcador
+     * 
+     * @return object|null
+     */
     public function add_marker(int $orderId, int $markerId = null, string $description)
     {
         $params = [
             "idPedido" => $orderId,
-            "marcadores" => []
         ];
 
-        $params["marcadores"][] = $this->parse_marker($markerId, $description);
+        $params["marcadores"] = json_encode([$this->parse_marker($markerId, $description)]);
 
-        return $this->setAction("pedido.adicionar.marcador.php")->setParams($params)->post()->getCallback();
+        return $this->setAction("pedido.marcadores.incluir")->setParams($params)->post()->getCallback();
     }
 
+    /**
+     * Adiciona múltiplos marcadores ao pedido
+     * @param int $orderId ID do Pedido
+     * @param array $markers [["id" => 1, "description" => "Teste"], ["id" => 2, "description" => "Teste 2"]]
+     * @return object|null
+     * 
+     */
     public function add_multiple_markers(int $orderId, array $markers)
     {
         $params = [
             "idPedido" => $orderId,
-            "marcadores" => []
         ];
 
-        $params["marcadores"][] = array_map(function ($marker) {
+        $params["marcadores"] = json_encode(array_map(function ($marker) {
             return $this->parse_marker($marker["id"] ?? null, $marker["description"] ?? null);
-        }, $markers);
-        
-        return $this->setAction("pedido.adicionar.marcador.php")->setParams($params)->post()->getCallback();
+        }, $markers));
+
+        return $this->setAction("pedido.marcadores.incluir")->setParams($params)->post()->getCallback();
     }
 
+    /**
+     * Formata um marcador para o formato esperado pelo Tiny
+     * @param null|int $markerId 
+     * @param null|string $description 
+     * @return array 
+     */
     private function parse_marker(?int $markerId, ?string $description)
     {
         $marker = [
             "marcador" => []
         ];
 
-        if ($markerId) {
-            $marker["marcador"]["id"] = $markerId;
-        }
+        $marker["marcador"]["id"] = $markerId;
 
         if ($description) {
             $marker["marcador"]["descricao"] = $description;
