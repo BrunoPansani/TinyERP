@@ -40,9 +40,14 @@ class Pedidos extends Http
      *
      * @return mixed
      */
-    public function update(?array $params): ?object
+    public function update(int $id, ?array $params): ?object
     {
-        return $this->setAction("pedido.alterar.php")->setParams(['dados_pedido' => json_encode($params)])->post()->getCallback();
+        $params = [
+            'id' => $id,
+            'dados_pedido' => json_encode($params)
+        ];
+
+        return $this->setAction("pedido.alterar.php")->setParams($params)->post()->getCallback();
     }
 
     /**
