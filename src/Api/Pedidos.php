@@ -34,8 +34,9 @@ class Pedidos extends Http
     }
 
     /**
-     * Atualizar do pedido
+     * Atualizar um pedido
      *
+     * @param string $id ID do pedido
      * @param array|null $params
      *
      * @return mixed
