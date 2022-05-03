@@ -111,7 +111,7 @@ class Pedidos extends Http
         ];
 
         $params["marcadores"][] = array_map(function ($marker) {
-            return $this->parse_marker($marker["id"], $marker["description"]);
+            return $this->parse_marker($marker["id"] ?? null, $marker["description"] ?? null);
         }, $markers);
         
         return $this->setAction("pedido.adicionar.marcador.php")->setParams($params)->post()->getCallback();
