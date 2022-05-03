@@ -90,4 +90,42 @@ class Pedidos extends Http
 
         return $this->setAction("gerar.nota.fiscal.pedido.php")->setParams($params)->post()->getCallback();
     }
+
+    public function add_marker(int $orderId, int $markerId = null, string $description)
+    {
+        $params = [
+            "idPedido" => $orderId,
+            "marcadores" => []
+        ];
+
+        $params["marcadores"][] = $this->parse_marker($markerId, $description);
+
+        return $this->setAction("pedido.adicionar.marcador.php")->setParams($params)->post()->getCallback();
+    }
+
+    public function add_multiple_markers(int $orderId, array $markers)
+    {
+        $params = [
+            "idPedido" => $orderId,
+            "marcadores" => []
+        ];
+
+        $params["marcadores"][] = array_map(function ($marker) {
+            return $this->parse_marker($marker["id"], $marker["descricao"]);
+        }, $markers);
+        
+        return $this->setAction("pedido.adicionar.marcador.php")->setParams($params)->post()->getCallback();
+    }
+
+    private function parse_marker(int $markerId, string $description)
+    {
+        $marker = [
+            "marcador" => [
+                "id" => $markerId,
+                "descricao" => $description
+            ]
+        ];
+
+        return $marker;
+    }
 }
