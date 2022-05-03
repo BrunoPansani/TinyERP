@@ -117,14 +117,19 @@ class Pedidos extends Http
         return $this->setAction("pedido.adicionar.marcador.php")->setParams($params)->post()->getCallback();
     }
 
-    private function parse_marker(int $markerId, string $description)
+    private function parse_marker(?int $markerId, ?string $description)
     {
         $marker = [
-            "marcador" => [
-                "id" => $markerId,
-                "descricao" => $description
-            ]
+            "marcador" => []
         ];
+
+        if ($markerId) {
+            $marker["marcador"]["id"] = $markerId;
+        }
+
+        if ($description) {
+            $marker["marcador"]["descricao"] = $description;
+        }
 
         return $marker;
     }
