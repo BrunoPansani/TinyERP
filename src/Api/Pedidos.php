@@ -141,9 +141,11 @@ class Pedidos extends Http
             "idPedido" => $orderId,
         ];
 
-        $params["marcadores"] = json_encode(array_map(function ($marker) {
+        $marcadores = array_map(function ($marker) {
             return $this->parse_marker($marker["id"] ?? null, $marker["description"] ?? null);
-        }, $markers));
+        }, $markers);
+
+        $params["marcadores"] = json_encode(["marcadores" => $marcadores]);
 
         return $this->setAction("pedido.marcadores.incluir")->setParams($params)->post()->getCallback();
     }
